@@ -1,77 +1,85 @@
 {
   "questions": [
     {
+      "id": 1,
       "questionText": "Which of the following does TypeScript use to specify types?",
-      "options": [
+      "answerChoices": [
         {
-          "text": ":",
+          "answerText": ":",
           "correct": true
         },
         {
-          "text": ";"
+          "answerText": ";"
         },
         {
-          "text": "!"
+          "answerText": "!"
         },
         {
-          "text": "&"
+          "answerText": "&"
         }
       ],
       "explanation": "TS uses a colon (:) to separate the property name from the property type"
     },
     {
+      "id": 2,
       "questionText": "Which of the following is NOT a type used in TypeScript?",
-      "options": [
+      "answerChoices": [
         {
-          "text": "number"
+          "answerText": "number"
         },
         {
-          "text": "string"
+          "answerText": "string"
         },
         {
-          "text": "boolean"
+          "answerText": "boolean"
         },
         {
-          "text": "enum",
+          "answerText": "enum",
           "correct": true
         }
       ],
       "explanation": "enum is not used as a type in TypeScript"
     },
     {
+      "id": 3,
       "questionText": "How can we specify properties and methods for an object in TypeScript?",
-      "options": [
+      "answerChoices": [
         {
-          "text": "Use classes."
+          "answerText": "Use classes."
         },
         {
-          "text": "Use interfaces.",
+          "answerText": "Use interfaces.",
           "correct": true
         },
         {
-          "text": "Use enums."
+          "answerText": "Use enums."
         },
         {
-          "text": "Use async/await."
+          "answerText": "Use async/await."
         }
       ],
       "explanation": "interfaces are typically used to list the properties and methods for an object"
     },
     {
+      "id": 4,
       "questionText": "How else can Array<number> be written in TypeScript?",
-      "options": [
+      "answerChoices": [
         {
-          "text": "@number"
+          "id": "answer1",
+          "answerText": "@number"
         },
         {
-          "text": "number[]",
+          "id": "answer2",
+          "answerText": "number[]",
           "correct": true
         },
         {
-          "text": "number!"
+          "id": "answer3",
+          "answerText": "number!"
         },
         {
-          "text": "number?"
+          "id": "answer4",
+          "answerText": "number?"
         }
       ],
       "explanation": "number[] is another way of writing Array<number> in TypeScript"

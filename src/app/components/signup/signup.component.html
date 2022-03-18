@@ -1,0 +1,56 @@
+<section class="center-container">
+  <div class="form-signin">
+    <a routerLink="/">
+      <img
+        class="mb-4"
+        src="../../../assets/imgs/eigital-logo2.png"
+        alt="eigital-logo"
+      />
+    </a>
+
+    <!-- !isSignUpDone -->
+    <form *ngIf="!isSignUpDone" (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+      <!-- email -->
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': email.touched && !email.valid }"
+          id="floatingEmail"
+          placeholder="name@example.com"
+          name="email"
+          ngModel
+          #email="ngModel"
+          required
+          email
+        />
+        <label for="floatingEmail">Email address</label>
+        <div *ngIf="email.touched && !email.valid" class="invalid-feedback">
+          Please provide a valid email.
+        </div>
+      </div>
+
+      <!-- signup btn -->
+      <button
+        class="w-100 btn btn-lg btn-primary"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Sign up
+      </button>
+    </form>
+
+    <!-- isSignUpDone -->
+    <div *ngIf="isSignUpDone">
+      <a routerLink="/question" class="w-100 btn btn-lg btn-primary"
+        >Enter Contest</a
+      >
+    </div>
+
+    <p class="mt-5 mb-3 text-muted">
+      &copy; 2022 | Quiz App by Mark Robert Bumatay
+    </p>
+  </div>
+</section>

@@ -1,0 +1,89 @@
+<div class="container pt-3">
+  <p>Email: {{ email }}</p>
+
+  <form #form="ngForm">
+    <div class="row">
+      <div class="col-md-2 order-md-2 text-md-end">
+        <p class="lead">
+          <i class="fa fa-hourglass-start" aria-hidden="true"></i> {{ counter }}
+        </p>
+        <p class="lead">
+          <i class="fa fa-star" aria-hidden="true"></i> {{ points }}
+        </p>
+      </div>
+      <div class="col-md-10 order-md-1">
+        <h3>Question {{ currentQuestionIndex + 1 }}</h3>
+        <p class="lead">
+          {{ questionsList[currentQuestionIndex].questionText }}
+        </p>
+      </div>
+    </div>
+
+    <div *ngIf="isAnswerSubmitted">
+      <div *ngIf="isCorrectAnswer" class="alert alert-success" role="alert">
+        <i class="fa fa-check-circle" aria-hidden="true"></i> Good Job!
+      </div>
+      <div *ngIf="!isCorrectAnswer" class="alert alert-danger" role="alert">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Incorrect
+        answer.
+      </div>
+    </div>
+
+    <ol class="answers-list">
+      <li
+        *ngFor="
+          let answerItem of questionsList[currentQuestionIndex].answerChoices
+        "
+        class="answer-item mb-3"
+      >
+        <div
+          class="card p-2"
+          [ngClass]="{
+            'bg-success bg-opacity-25': isAnswerSubmitted && answerItem.correct
+          }"
+        >
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="answerInput"
+              [value]="answerItem.answerText"
+              [disabled]="isAnswerSubmitted"
+              ngModel
+              #answer="ngModel"
+              required
+            />
+            <label class="form-check-label">
+              {{ answerItem.answerText }}
+            </label>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="d-flex justify-content-end">
+      <button
+        *ngIf="!isAnswerSubmitted"
+        (click)="checkAnswer(form)"
+        [disabled]="!form.valid"
+        class="btn btn-primary"
+      >
+        Check Answer
+      </button>
+      <button
+        *ngIf="!isQuizComplete && isAnswerSubmitted"
+        (click)="nextQuestion()"
+        class="btn btn-primary"
+      >
+        Next
+      </button>
+
+      <div *ngIf="isQuizComplete" class="d-flex gap-2">
+        <a routerLink="/" class="btn btn-primary">Retry Quiz</a>
+        <button (click)="showResults()" class="btn btn-primary">
+          Show Results
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
