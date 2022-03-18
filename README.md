@@ -1,6 +1,6 @@
 # Frontend Assessment App for eigital
 
-Live project url: `https://frontend-assessment-app.web.app/`
+Live project url: (https://frontend-assessment-app.web.app/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
