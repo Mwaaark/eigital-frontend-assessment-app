@@ -83,6 +83,30 @@
         }
       ],
       "explanation": "number[] is another way of writing Array<number> in TypeScript"
+    },
+    {
+      "id": 5,
+      "questionText": "In which of these does a class take parameters?",
+      "answerChoices": [
+        {
+          "id": "answer1",
+          "answerText": "constructor",
+          "correct": true
+        },
+        {
+          "id": "answer2",
+          "answerText": "destructor"
+        },
+        {
+          "id": "answer3",
+          "answerText": "import"
+        },
+        {
+          "id": "answer4",
+          "answerText": "subscribe"
+        }
+      ],
+      "explanation": "a constructor is used by a class to take in parameters"
     }
   ]
 }

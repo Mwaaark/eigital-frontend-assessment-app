@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { interval } from 'rxjs';
-import { AnswerChoices, Question } from 'src/app/model/question.model';
+import { Question } from 'src/app/model/question.model';
 import { QuestionService } from 'src/app/services/question.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-question',
@@ -12,6 +14,7 @@ import { QuestionService } from 'src/app/services/question.service';
 export class QuestionComponent implements OnInit {
   email: string | null = '';
   points = 0;
+  correctAnswers = 0;
 
   questionsList: Question[] = [];
   currentQuestionIndex = 0;
@@ -23,7 +26,10 @@ export class QuestionComponent implements OnInit {
   isCorrectAnswer = false;
   isQuizComplete = false;
 
-  constructor(private questionService: QuestionService) {}
+  constructor(
+    private questionService: QuestionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.email = localStorage.getItem('email');
@@ -41,6 +47,9 @@ export class QuestionComponent implements OnInit {
   startTimer() {
     this.interval = interval(1000).subscribe((data) => {
       this.counter--;
+      if (this.counter === 0) {
+        this.checkAnswer();
+      }
     });
 
     this.timeoutId = setTimeout(() => {
@@ -53,7 +62,7 @@ export class QuestionComponent implements OnInit {
     clearTimeout(this.timeoutId);
   }
 
-  checkAnswer(form: NgForm) {
+  checkAnswer(form?: NgForm) {
     this.clearTimer();
     this.isAnswerSubmitted = true;
 
@@ -61,18 +70,16 @@ export class QuestionComponent implements OnInit {
     const correctAnswer = this.questionsList[
       this.currentQuestionIndex
     ].answerChoices.find((el) => el.correct);
+
     // check if correct answer equal to selected answer
-    if (correctAnswer?.answerText === form.value.answerInput) {
+    if (form && correctAnswer?.answerText === form.value.answerInput) {
       this.points += 100;
       this.isCorrectAnswer = true;
-    } else {
-      this.points -= 100;
-      this.isCorrectAnswer = false;
+      this.correctAnswers++;
     }
 
-    if (this.currentQuestionIndex === this.questionsList.length - 1) {
-      this.isQuizComplete = true;
-    }
+    this.isQuizComplete =
+      this.currentQuestionIndex === this.questionsList.length - 1;
   }
 
   nextQuestion() {
@@ -81,6 +88,7 @@ export class QuestionComponent implements OnInit {
   }
 
   reset() {
+    this.retryQuiz();
     this.isAnswerSubmitted = false;
     this.isCorrectAnswer = false;
     this.counter = 15;
@@ -88,7 +96,25 @@ export class QuestionComponent implements OnInit {
     this.startTimer();
   }
 
-  showResults() {
-    alert('test');
+  retryQuiz() {
+    if (this.isQuizComplete) {
+      this.currentQuestionIndex = 0;
+      this.isQuizComplete = false;
+      this.points = 0;
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('email');
+    this.router.navigate(['']);
+  }
+
+  seeResults() {
+    swal.fire({
+      title: `Your total earning points: ${this.points}`,
+      text: `You got ${this.correctAnswers} out of ${this.questionsList.length} correct`,
+      icon: 'info',
+      confirmButtonColor: '#0d6efd',
+    });
   }
 }
