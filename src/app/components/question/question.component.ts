@@ -101,6 +101,7 @@ export class QuestionComponent implements OnInit {
       this.currentQuestionIndex = 0;
       this.isQuizComplete = false;
       this.points = 0;
+      this.correctAnswers = 0;
     }
   }
 
