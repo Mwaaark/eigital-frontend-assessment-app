@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { interval } from 'rxjs';
 import { Question } from 'src/app/model/question.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { QuestionService } from 'src/app/services/question.service';
 import swal from 'sweetalert2';
 
@@ -28,7 +29,8 @@ export class QuestionComponent implements OnInit {
 
   constructor(
     private questionService: QuestionService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +42,6 @@ export class QuestionComponent implements OnInit {
   getQuestions() {
     this.questionService.getQuestions().subscribe(({ questions }) => {
       this.questionsList = questions;
-      console.log(this.questionsList);
     });
   }
 
@@ -106,8 +107,8 @@ export class QuestionComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('email');
-    this.router.navigate(['']);
+    this.authService.logout();
+    this.router.navigate(['/signup']);
   }
 
   seeResults() {
