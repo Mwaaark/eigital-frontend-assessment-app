@@ -1,39 +1,47 @@
 {
   "questions": [
     {
-      "id": 1,
+      "id": "question1",
       "questionText": "Which of the following does TypeScript use to specify types?",
       "answerChoices": [
         {
+          "id": "answer1",
           "answerText": ":",
           "correct": true
         },
         {
+          "id": "answer2",
           "answerText": ";"
         },
         {
+          "id": "answer3",
           "answerText": "!"
         },
         {
+          "id": "answer4",
           "answerText": "&"
         }
       ],
       "explanation": "TS uses a colon (:) to separate the property name from the property type"
     },
     {
-      "id": 2,
+      "id": "question2",
       "questionText": "Which of the following is NOT a type used in TypeScript?",
       "answerChoices": [
         {
+          "id": "answer1",
           "answerText": "number"
         },
         {
+          "id": "answer2",
           "answerText": "string"
         },
         {
+          "id": "answer3",
           "answerText": "boolean"
         },
         {
+          "id": "answer4",
           "answerText": "enum",
           "correct": true
         }
@@ -41,27 +49,31 @@
       "explanation": "enum is not used as a type in TypeScript"
     },
     {
-      "id": 3,
+      "id": "question3",
       "questionText": "How can we specify properties and methods for an object in TypeScript?",
       "answerChoices": [
         {
+          "id": "answer1",
           "answerText": "Use classes."
         },
         {
+          "id": "answer2",
           "answerText": "Use interfaces.",
           "correct": true
         },
         {
+          "id": "answer3",
           "answerText": "Use enums."
         },
         {
+          "id": "answer4",
           "answerText": "Use async/await."
         }
       ],
       "explanation": "interfaces are typically used to list the properties and methods for an object"
     },
     {
-      "id": 4,
+      "id": "question4",
       "questionText": "How else can Array<number> be written in TypeScript?",
       "answerChoices": [
         {
@@ -85,7 +97,7 @@
       "explanation": "number[] is another way of writing Array<number> in TypeScript"
     },
     {
-      "id": 5,
+      "id": "question5",
       "questionText": "In which of these does a class take parameters?",
       "answerChoices": [
         {

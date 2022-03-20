@@ -1,5 +1,5 @@
 export interface Question {
-  id: number;
+  id: string;
   questionText: string;
   answerChoices: AnswerChoices[];
   explanation: string;
@@ -8,5 +8,5 @@ export interface Question {
 export interface AnswerChoices {
   id: string;
   answerText: string;
-  correct: boolean;
+  correct?: boolean;
 }
