@@ -36,14 +36,8 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = localStorage.getItem('email');
-    this.getQuestions();
+    this.questionsList = this.questionService.getQuestionsFromLS();
     this.startTimer();
-  }
-
-  getQuestions() {
-    this.questionService.getQuestions().subscribe(({ questions }) => {
-      this.questionsList = questions;
-    });
   }
 
   startTimer() {

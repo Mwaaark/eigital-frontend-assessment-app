@@ -10,4 +10,8 @@ export class QuestionService {
   getQuestions() {
     return this.http.get<any>('assets/questions.json');
   }
+
+  getQuestionsFromLS() {
+    return JSON.parse(localStorage.getItem('questions'));
+  }
 }

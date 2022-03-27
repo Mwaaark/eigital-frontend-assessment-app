@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,9 +11,16 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent implements OnInit {
   isSignUpDone = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private questionService: QuestionService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.questionService.getQuestions().subscribe(({ questions }) => {
+      localStorage.setItem('questions', JSON.stringify(questions));
+    });
+  }
 
   onSubmit(form: NgForm) {
     const { email } = form.value;
