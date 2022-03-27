@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { interval } from 'rxjs';
@@ -13,6 +13,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent implements OnInit {
+  @ViewChild('form') form: NgForm;
   email: string | null = '';
   points = 0;
   correctAnswers = 0;
@@ -63,7 +64,7 @@ export class QuestionComponent implements OnInit {
     clearTimeout(this.timeoutId);
   }
 
-  checkAnswer(form?: NgForm) {
+  checkAnswer() {
     this.clearTimer();
     this.isAnswerSubmitted = true;
 
@@ -73,7 +74,10 @@ export class QuestionComponent implements OnInit {
     ].answerChoices.find((el) => el.correct);
 
     // check if correct answer equal to selected answer
-    if (form && correctAnswer?.answerText === form.value.answerInput) {
+    if (
+      this.form &&
+      correctAnswer?.answerText === this.form.value.answerInput
+    ) {
       this.points += 100;
       this.isCorrectAnswer = true;
       this.correctAnswers++;
